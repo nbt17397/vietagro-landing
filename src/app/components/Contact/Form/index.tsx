@@ -127,7 +127,7 @@ const ContactForm = () => {
                   id='Phnumber'
                   type='tel'
                   name='phnumber'
-                  placeholder='+1234567890'
+                  placeholder='+84 903381454'
                   value={formData.phnumber}
                   onChange={handleChange}
                   className='w-full text-base px-4 rounded-2xl py-2.5 border-solid border transition-all duration-500 focus:border-primary focus:outline-0'

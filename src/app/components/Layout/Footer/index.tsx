@@ -125,7 +125,7 @@ const Footer: FC = () => {
         </div>
         <div className='border-t border-grey/15 py-5 flex flex-col sm:flex-row justify-between sm:items-center gap-5'>
           <p className='text-sm text-black/70'>
-            Copyright 2025 © VIETARGO
+            Copyright 2025 © NIDANCO
           </p>
 
           <div className=''>

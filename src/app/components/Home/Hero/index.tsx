@@ -12,7 +12,7 @@ const Hero = () => {
               Xuất Khẩu Nông Sản Việt
             </h1>
             <p className='text-black/55 text-lg font-normal mb-10 lg:text-start text-center'>
-              Chào mừng quý khách hàng và đối tác đến với VietArgo – một công ty hàng đầu trong lĩnh vực sản xuất và xuất khẩu các mặt hàng liên quan đến nông nghiệp và năng lượng.
+              Chào mừng quý khách hàng và đối tác đến với NiDanCo – một công ty hàng đầu trong lĩnh vực sản xuất và xuất khẩu các mặt hàng liên quan đến nông nghiệp và năng lượng.
             </p>
             <div className='flex flex-col sm:flex-row gap-5 items-center justify-center lg:justify-start'>
               <Link href='/#menu'>
