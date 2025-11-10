@@ -8,7 +8,7 @@ import Newsletter from '@/app/components/Home/Newsletter'
 import { Metadata } from 'next'
 import ContactForm from './components/Contact/Form'
 export const metadata: Metadata = {
-  title: 'VietArgo',
+  title: 'NiDanCo',
 }
 
 export default function Home() {

@@ -8,7 +8,7 @@ export default function ScrollToTop() {
   const [isVisible, setIsVisible] = useState(false)
   
   // Thay thế YOUR_WHATSAPP_NUMBER bằng số điện thoại của bạn (ví dụ: 84901234567)
-  const WHATSAPP_NUMBER = '0123456789' 
+  const WHATSAPP_NUMBER = '84903381454' 
 
   const whatsappLink = `https://wa.me/${WHATSAPP_NUMBER}?text=Xin%20chào,%20tôi%20muốn%20hỏi%20về%20các%20sản%20phẩm%20của%20bạn.`
 
