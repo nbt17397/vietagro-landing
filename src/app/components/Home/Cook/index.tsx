@@ -21,13 +21,13 @@ const Cook = () => {
               About Us
             </p>
             <h2 className='lg:text-start text-center'>
-              VIETARGO - Xuất Khẩu Nông Sản Việt. ssssssssssssss
+              NIDANCO - Xuất Khẩu Nông Sản Việt.
             </h2>
             <p className='text-black/50 text-lg font-normal my-5 text-start'>
-              Chào mừng quý khách hàng và đối tác đến với VietArgo – một công ty hàng đầu trong lĩnh vực sản xuất và xuất khẩu các mặt hàng liên quan đến nông nghiệp và năng lượng. Chúng tôi tự hào với truyền thống cam kết chất lượng cao và dịch vụ khách hàng xuất sắc.
+              Chào mừng quý khách hàng và đối tác đến với NiDanCo – một công ty hàng đầu trong lĩnh vực sản xuất và xuất khẩu các mặt hàng liên quan đến nông nghiệp và năng lượng. Chúng tôi tự hào với truyền thống cam kết chất lượng cao và dịch vụ khách hàng xuất sắc.
             </p>
             <p className='text-black/50 text-lg font-normal mb-10 text-start'>
-              Hơn nữa, VietArgo nhấn mạnh việc phát triển các sản phẩm năng lượng tái tạo như mùn cưa và viên nén từ gỗ, góp phần vào những nỗ lực chung của cộng đồng quốc tế trong bảo vệ môi trường và giảm lượng khí nhà kính phát ra
+              Hơn nữa, NiDanCo nhấn mạnh việc phát triển các sản phẩm năng lượng tái tạo như mùn cưa và viên nén từ gỗ, góp phần vào những nỗ lực chung của cộng đồng quốc tế trong bảo vệ môi trường và giảm lượng khí nhà kính phát ra
             </p>
             <p className='text-black/50 text-lg font-normal mb-10 text-start'>
               Với đội ngũ chuyên gia giàu kinh nghiệm và sự hiểu biết sâu rộng về ngành nông nghiệp, chúng tôi không ngừng nỗ lực cung cấp các sản phẩm đa dạng và một mạng lưới nhà cung cấp đáng tin cậy. Chúng tôi tích cực tham gia vào quá trình phát triển các giải pháp sáng tạo, nhằm đáp ứng nhanh chóng các yêu cầu đa dạng của thị trường toàn cầu.
