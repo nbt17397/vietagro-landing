@@ -21,7 +21,7 @@ const Cook = () => {
               About Us
             </p>
             <h2 className='lg:text-start text-center'>
-              VIETARGO - Xuất Khẩu Nông Sản Việt.
+              VIETARGO - Xuất Khẩu Nông Sản Việt. ssssssssssssss
             </h2>
             <p className='text-black/50 text-lg font-normal my-5 text-start'>
               Chào mừng quý khách hàng và đối tác đến với VietArgo – một công ty hàng đầu trong lĩnh vực sản xuất và xuất khẩu các mặt hàng liên quan đến nông nghiệp và năng lượng. Chúng tôi tự hào với truyền thống cam kết chất lượng cao và dịch vụ khách hàng xuất sắc.
