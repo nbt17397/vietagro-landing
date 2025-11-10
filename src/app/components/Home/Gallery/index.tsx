@@ -5,17 +5,29 @@ import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import GalleryImagesSkeleton from '../../Skeleton/GalleryImages'
 import { Icon } from '@iconify/react'
-import { GalleryImagesType } from '@/app/types/galleryimage'
-import { FullMenuType } from '@/app/types/fullmenu'
+// Giả sử đường dẫn và các Types này đã được định nghĩa
+import { GalleryImagesType } from '@/app/types/galleryimage' 
+import { FullMenuType } from '@/app/types/fullmenu' 
 
 const Gallery = () => {
   const [galleryImages, setGalleryImages] = useState<GalleryImagesType[]>([])
   const [fullMenu, setFullMenu] = useState<FullMenuType[]>([])
   const [loading, setLoading] = useState(true)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  
+  // STATE MỚI: Để lưu trữ sản phẩm đang được xem chi tiết
+  const [selectedProduct, setSelectedProduct] = useState<GalleryImagesType | null>(null)
 
-  const openMenu = () => setIsMenuOpen(true)
-  const closeMenu = () => setIsMenuOpen(false)
+  const openFullMenu = () => setIsMenuOpen(true) // Giữ nguyên chức năng nút "Xem thêm"
+  const closeFullMenu = () => setIsMenuOpen(false)
+
+  // HÀM MỚI: Mở modal chi tiết sản phẩm
+  const openProductDetail = (product: GalleryImagesType) => {
+    setSelectedProduct(product)
+  }
+  const closeProductDetail = () => {
+    setSelectedProduct(null)
+  }
 
   useEffect(() => {
     const fetchData = async () => {
@@ -34,16 +46,15 @@ const Gallery = () => {
     fetchData()
   }, [])
 
-  // Component để render menu với hình ảnh
+  // --- COMPONENT CHILD: Danh sách Menu (Dùng cho nút Xem thêm) ---
   const MenuList = ({ menuData }: { menuData: FullMenuType[] }) => {
-    // Chia danh sách thành 2 nửa gần bằng nhau để hiển thị 2 cột
     const midPoint = Math.ceil(menuData.length / 2)
     const firstHalf = menuData.slice(0, midPoint)
     const secondHalf = menuData.slice(midPoint)
 
     const MenuItem = ({ item }: { item: FullMenuType }) => (
       <div className='flex items-center text-left py-3 border-b border-gray-100 transition duration-300 hover:bg-neutral-50 p-2 rounded-lg'>
-        {item.src && ( // Chỉ hiển thị ảnh nếu có src
+        {item.src && ( 
           <div className='relative w-20 h-20 md:w-24 md:h-24 mr-4 shrink-0 rounded-md overflow-hidden shadow-sm'>
             <Image
               src={item.src}
@@ -72,13 +83,11 @@ const Gallery = () => {
 
     return (
       <div className='grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-2 max-h-[calc(95vh-160px)] overflow-y-auto custom-scrollbar px-4'>
-        {/* Cột 1 */}
         <div className='flex flex-col'>
           {firstHalf.map((item, index) => (
             <MenuItem key={index} item={item} />
           ))}
         </div>
-        {/* Cột 2 */}
         <div className='flex flex-col'>
           {secondHalf.map((item, index) => (
             <MenuItem key={index + midPoint} item={item} />
@@ -87,6 +96,53 @@ const Gallery = () => {
       </div>
     )
   }
+
+  // --- COMPONENT CHILD: Modal Chi Tiết Sản Phẩm (Dùng cho nút Xem chi tiết) ---
+  const ProductDetailModal = ({ product, onClose }: { product: GalleryImagesType, onClose: () => void }) => {
+    return (
+      <div
+        className='fixed top-0 left-0 w-full h-full bg-black/50 flex items-center justify-center z-[60] px-4'
+        onClick={onClose}
+      >
+        <div
+          className='relative mx-auto w-full max-w-6xl max-h-[95vh] rounded-3xl p-6 md:p-10 text-center bg-white overflow-hidden shadow-2xl flex flex-col'
+          onClick={(e) => e.stopPropagation()}
+        >
+          <button
+            onClick={onClose}
+            className='absolute top-0 right-0 mr-4 mt-4 hover:cursor-pointer p-2 rounded-full bg-neutral-100 hover:bg-primary/10 transition z-10'
+          >
+            <Icon
+              icon='material-symbols:close-rounded'
+              width={28}
+              height={28}
+              className='text-black hover:text-primary inline-block'
+            />
+          </button>
+          <div className='overflow-y-auto custom-scrollbar flex-grow'>
+            <div className='relative w-full h-64 md:h-80 mb-6 rounded-xl overflow-hidden'>
+                <Image
+                    src={product.src}
+                    alt={product.name}
+                    fill={true}
+                    style={{ objectFit: 'cover' }}
+                />
+            </div>
+
+            <h3 className='text-3xl font-extrabold text-black mb-2'>{product.name}</h3>
+            <p className='text-2xl font-bold text-primary mb-4'>$ {product.price}</p>
+            
+            {/* 🔥 HIỂN THỊ DESCRIPTION */}
+            <p className='text-gray-700 text-lg text-left whitespace-pre-line'>
+                {product.description}
+            </p>
+            {/* END DESCRIPTION */}
+          </div>
+        </div>
+      </div>
+    )
+  }
+  // --- END COMPONENT CHILD ---
 
   return (
     <section id='menu' className='scroll-mt-20'>
@@ -130,6 +186,11 @@ const Gallery = () => {
                         </p>
                         <Link
                           href='#'
+                          // GỌI HÀM MỞ MODAL CHI TIẾT SẢN PHẨM
+                          onClick={(e) => {
+                            e.preventDefault() 
+                            openProductDetail(item) 
+                          }}
                           className='text-white rounded-full bg-primary border duration-300 border-primary py-2 lg:px-6 md:px-4 px-3 hover:bg-primary/40 hover:backdrop-blur-xs md:text-base text-sm'
                         >
                           Xem chi tiết
@@ -143,23 +204,23 @@ const Gallery = () => {
         <div className='flex justify-center'>
           <button
             className='px-6 py-2 border border-primary rounded-full text-base font-medium text-white bg-primary hover:bg-primary/20 hover:text-primary hover:cursor-pointer transition ease-in-out duration-300'
-            onClick={openMenu}
+            onClick={openFullMenu} // Mở toàn bộ danh sách sản phẩm
           >
             Xem thêm
           </button>
-          {/* menu pop-up (ĐÃ CHỈNH SỬA KÍCH THƯỚC) */}
+          
+          {/* 1. Modal Full Menu (Cho nút "Xem thêm") */}
           {isMenuOpen && (
             <div
               className='fixed top-0 left-0 w-full h-full bg-black/50 flex items-center justify-center z-50 px-4'
-              onClick={closeMenu}
+              onClick={closeFullMenu}
             >
               <div
-                // 💥 ĐÃ CHUYỂN TỪ max-w-4xl SANG max-w-6xl 
                 className='relative mx-auto w-full max-w-6xl max-h-[95vh] rounded-3xl px-4 pt-14 pb-8 text-center bg-white overflow-hidden shadow-2xl'
                 onClick={(e) => e.stopPropagation()}
               >
                 <button
-                  onClick={closeMenu}
+                  onClick={closeFullMenu}
                   className='absolute top-0 right-0 mr-6 mt-6 hover:cursor-pointer p-2 rounded-full bg-neutral-100 hover:bg-primary/10 transition'
                 >
                   <Icon
@@ -172,10 +233,6 @@ const Gallery = () => {
                 <p className='text-black text-4xl font-serif font-extrabold mb-2'>
                   Products 📜
                 </p>
-                {/* <p className='text-gray-500 mb-6'>
-                  Fine dining at your fingertips.
-                </p> */}
-                {/* Vùng cuộn menu sử dụng kích thước mới */}
                 <div className='max-h-[calc(95vh-160px)] overflow-y-auto custom-scrollbar px-4'>
                   {fullMenu.length > 0 ? (
                     <MenuList menuData={fullMenu} />
@@ -186,6 +243,12 @@ const Gallery = () => {
               </div>
             </div>
           )}
+
+          {/* 2. Modal Chi Tiết Sản Phẩm (Cho nút "Xem chi tiết") */}
+          {selectedProduct && (
+            <ProductDetailModal product={selectedProduct} onClose={closeProductDetail} />
+          )}
+
         </div>
       </div>
     </section>

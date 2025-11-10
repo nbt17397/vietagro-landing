@@ -52,21 +52,25 @@ const GalleryImagesData: GalleryImagesType[] = [
   {
     src: '/images/Gallery/foodone.webp',
     name: 'Caesar Salad(187 Kcal)',
+    description: 'Served with lemon butter sauce and grilled vegetables.',
     price: 35,
   },
   {
     src: '/images/Gallery/foodtwo.webp',
     name: 'Christmas salad(118 Kcal)',
+    description: 'Served with lemon butter sauce and grilled vegetables.',
     price: 17,
   },
   {
     src: '/images/Gallery/foodthree.webp',
     name: 'Sauteed mushrooms with pumpkin bowl(238 kcal)',
+    description: 'Served with lemon butter sauce and grilled vegetables.',
     price: 45,
   },
   {
     src: '/images/Gallery/foodfour.webp',
     name: 'BBQ Chicken Feast Pizza(272 kcal)',
+    description: 'Served with lemon butter sauce and grilled vegetables.',
     price: 27,
   },
 ]
